@@ -1,27 +1,32 @@
-package com.example.timezone;
+package com.example.timezone.controller;
+
 import org.springframework.web.bind.annotation.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 @RestController
-public class TimezoneController {
+public class TimeController {
 
     @PostMapping("/timezone/localtime")
     public String getLocalTime(@RequestBody TimeZoneRequest request) {
-        // Use the time zone from the request
+        // Utilisation du time zone venant du body de la requête
         String timeZoneId = request.getTimezone();
 
-        // Get current time in the specified time zone
+        // Obtention de la date et heure dans le fuseau horaire spécifié
         ZonedDateTime dateTime = ZonedDateTime.now(ZoneId.of(timeZoneId));
 
-        // Return the formatted response
-        return "Current time in " + timeZoneId + " is " + dateTime.toString();
+        // Formater la date et l'heure pour un affichage plus lisible
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm:ss");
+        String formattedDate = dateTime.format(formatter);
+
+        // Retourner la réponse formatée
+        return "Current time in " + timeZoneId + ": " + formattedDate;
     }
 }
 
 class TimeZoneRequest {
     private String timezone;
 
-    // Getter and setter for timezone
     public String getTimezone() {
         return timezone;
     }

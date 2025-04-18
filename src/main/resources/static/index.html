@@ -1,55 +1,43 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Heure par coordonnées</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Selector</title>
 </head>
 <body>
 
-<h1>Consulter l'heure selon des coordonnées</h1>
+<h2>Select a Time Zone</h2>
 
-<input id="lat" type="number" placeholder="Latitude" step="any">
-<input id="lon" type="number" placeholder="Longitude" step="any">
-<br>
-<button onclick="getTime()">Obtenir l'heure</button>
+<!-- Dropdown for time zones -->
+<select id="timezoneSelect">
+    <option value="Europe/Paris">Europe/Paris</option>
+    <option value="America/New_York">America/New_York</option>
+    <option value="Asia/Tokyo">Asia/Tokyo</option>
+    <option value="Australia/Sydney">Australia/Sydney</option>
+    <option value="America/Los_Angeles">America/Los_Angeles</option>
+    <option value="Europe/London">Europe/London</option>
+</select>
 
-<h2 id="result"></h2>
+<!-- Button to get the time -->
+<button onclick="getTime()">Get Time</button>
+
+<p id="result"></p>
 
 <script>
     async function getTime() {
-        const lat = parseFloat(document.getElementById("lat").value);
-        const lon = parseFloat(document.getElementById("lon").value);
+        const timezone = document.getElementById("timezoneSelect").value;
 
-        try {
-            const response = await fetch("/timezone/localtime", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ lat, lon }) // envoie lat et lon comme un objet JSON
-            });
+        const response = await fetch("/timezone/localtime", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ timezone }) // send selected timezone to backend
+        });
 
-            if (!response.ok) {
-                throw new Error("Erreur lors de la récupération");
-            }
-
-            const text = await response.text();
-            document.getElementById("result").innerText = text; // affiche l'heure obtenue
-
-        } catch (error) {
-            document.getElementById("result").innerText = `Erreur : ${error.message}`;
-        }
+        const result = await response.text(); // Get the result from backend
+        document.getElementById("result").innerText = result; // Display the result in a paragraph
     }
 </script>
 

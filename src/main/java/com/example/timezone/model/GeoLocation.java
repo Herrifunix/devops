@@ -4,7 +4,6 @@ public class GeoLocation {
     private double lat;
     private double lon;
 
-    // Constructeur
     public GeoLocation() {}
 
     public GeoLocation(double lat, double lon) {
@@ -12,7 +11,6 @@ public class GeoLocation {
         this.lon = lon;
     }
 
-    // Getters et setters
     public double getLat() {
         return lat;
     }
