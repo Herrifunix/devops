@@ -4,45 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Zone Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Select a Time Zone</h2>
-<select id="timezoneSelect">
-    <option value="Europe/Paris">Europe/Paris (France)</option>
-    <option value="Europe/London">Europe/London (Royaume-Uni)</option>
-    <option value="Europe/Berlin">Europe/Berlin (Allemagne)</option>
-    <option value="Europe/Rome">Europe/Rome (Italie)</option>
-    <option value="Europe/Stockholm">Europe/Stockholm (Suède)</option>
-    <option value="America/New_York">America/New_York (États-Unis)</option>
-    <option value="America/Chicago">America/Chicago (États-Unis)</option>
-    <option value="America/Los_Angeles">America/Los_Angeles (États-Unis)</option>
-    <option value="America/Mexico_City">America/Mexico_City (Mexique)</option>
-    <option value="America/Toronto">America/Toronto (Canada)</option>
-    <option value="Asia/Tokyo">Asia/Tokyo (Japon)</option>
-    <option value="Asia/Kolkata">Asia/Kolkata (Inde)</option>
-    <option value="Asia/Seoul">Asia/Seoul (Corée du Sud)</option>
-    <option value="Asia/Shanghai">Asia/Shanghai (Chine)</option>
-    <option value="Asia/Dubai">Asia/Dubai (Émirats Arabes Unis)</option>
-    <option value="Africa/Johannesburg">Africa/Johannesburg (Afrique du Sud)</option>
-    <option value="Africa/Cairo">Africa/Cairo (Égypte)</option>
-    <option value="Africa/Lagos">Africa/Lagos (Nigéria)</option>
-    <option value="Africa/Nairobi">Africa/Nairobi (Kenya)</option>
-    <option value="Africa/Accra">Africa/Accra (Ghana)</option>
-    <option value="America/Sao_Paulo">America/Sao_Paulo (Brésil)</option>
-    <option value="America/Argentina/Buenos_Aires">America/Argentina/Buenos_Aires (Argentine)</option>
-    <option value="America/Lima">America/Lima (Pérou)</option>
-    <option value="America/Chile">America/Chile (Chili)</option>
-    <option value="America/Bogota">America/Bogota (Colombie)</option>
-    <option value="Pacific/Auckland">Pacific/Auckland (Nouvelle-Zélande)</option>
-    <option value="Pacific/Honolulu">Pacific/Honolulu (Hawaï)</option>
-    <option value="Australia/Sydney">Australia/Sydney (Australie)</option>
-</select>
+<div class="container">
+    <h2>Select a Time Zone</h2>
+    <select id="timezoneSelect">
+        <option value="Europe/Paris">Europe/Paris (France)</option>
+        <option value="Europe/London">Europe/London (Royaume-Uni)</option>
+        <option value="Europe/Berlin">Europe/Berlin (Allemagne)</option>
+        <option value="Europe/Rome">Europe/Rome (Italie)</option>
+        <option value="Europe/Stockholm">Europe/Stockholm (Suède)</option>
+        <option value="America/New_York">America/New_York (États-Unis)</option>
+        <option value="America/Chicago">America/Chicago (États-Unis)</option>
+        <option value="America/Los_Angeles">America/Los_Angeles (États-Unis)</option>
+        <option value="America/Mexico_City">America/Mexico_City (Mexique)</option>
+        <option value="America/Toronto">America/Toronto (Canada)</option>
+        <option value="Asia/Tokyo">Asia/Tokyo (Japon)</option>
+        <option value="Asia/Kolkata">Asia/Kolkata (Inde)</option>
+        <option value="Asia/Seoul">Asia/Seoul (Corée du Sud)</option>
+        <option value="Asia/Shanghai">Asia/Shanghai (Chine)</option>
+        <option value="Asia/Dubai">Asia/Dubai (Émirats Arabes Unis)</option>
+        <option value="Africa/Johannesburg">Africa/Johannesburg (Afrique du Sud)</option>
+        <option value="Africa/Cairo">Africa/Cairo (Égypte)</option>
+        <option value="Africa/Lagos">Africa/Lagos (Nigéria)</option>
+        <option value="Africa/Nairobi">Africa/Nairobi (Kenya)</option>
+        <option value="Africa/Accra">Africa/Accra (Ghana)</option>
+        <option value="America/Sao_Paulo">America/Sao_Paulo (Brésil)</option>
+        <option value="America/Argentina/Buenos_Aires">America/Argentina/Buenos_Aires (Argentine)</option>
+        <option value="America/Lima">America/Lima (Pérou)</option>
+        <option value="America/Chile">America/Chile (Chili)</option>
+        <option value="America/Bogota">America/Bogota (Colombie)</option>
+        <option value="Pacific/Auckland">Pacific/Auckland (Nouvelle-Zélande)</option>
+        <option value="Pacific/Honolulu">Pacific/Honolulu (Hawaï)</option>
+        <option value="Australia/Sydney">Australia/Sydney (Australie)</option>
+    </select>
 
-<!-- Button to get the time -->
-<button onclick="getTime()">Get Time</button>
+    <button onclick="getTime()">Get Time</button>
 
-<p id="result"></p>
+    <p id="result"></p>
+</div>
 
 <script>
     async function getTime() {

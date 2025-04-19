@@ -27,3 +27,4 @@ public class GeoLocation {
         this.lon = lon;
     }
 }
+
